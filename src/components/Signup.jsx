@@ -4,6 +4,8 @@ import {
 } from 'reactstrap'
 import {Base} from './Base'
 import { useState } from 'react'
+import { signUp } from '../../services/user-service'
+import { toast } from 'react-toastify'
 export const Signup = () => {
     const [data, setData] = useState({
         name: '',
@@ -12,9 +14,9 @@ export const Signup = () => {
         about:''
     })
 
-    const [errors, setErrors] = useState({
-        error: {},
-        isValid:false
+    const [valError, setValError] = useState({
+        errors: {},
+        isError:false
     })
 
     const handleChange = (e, field) => setData(d => ({ ...d, [field]: e.target.value }))
@@ -23,6 +25,26 @@ export const Signup = () => {
         console.log(data)
         //validate
         //make call to server api
+        signUp(data)
+            .then(data => {
+                console.log(data)
+                toast.success(`user is regsitered successfully !! ${data.id}`)
+                setData({
+                     name: '',
+                     email: '',
+                     password: '',
+                     about:''
+                })
+            })
+            .catch(error => {
+                console.log(error)
+                setValError({
+                    errors: error,
+                    isError:true
+                })
+
+            })
+
     }
     const resetHandler = () => {
         setData({

@@ -7,8 +7,8 @@ function App() {
   return (
     <>
       <ToastContainer position="bottom-center"/>
-      <Signup/>
-      {/* <Login/> */}
+      {/* <Signup/> */}
+      <Login/>
    </>
   )
 }

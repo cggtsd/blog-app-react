@@ -1,6 +1,7 @@
 import {
     FormGroup, Container, Row, Col, Form, Label, Input,
-    CardHeader, CardBody, Card,Button
+    CardHeader, CardBody, Card,Button,
+    FormFeedback
 } from 'reactstrap'
 import {Base} from './Base'
 import { useState } from 'react'
@@ -74,22 +75,35 @@ export const Signup = () => {
                                         <Input id="name" placeholder="Enter name"
                                             type="text"
                                             value={data.name}
-                                            onChange={(e)=>handleChange(e,'name')}
+                                            onChange={(e) => handleChange(e, 'name')}
+                                            invalid={valError?.errors?.response?.data?.name?true:false}
+                                            
                                         />
+                                        <FormFeedback>
+                                            {valError?.errors?.response?.data?.name}
+                                        </FormFeedback>
                            </FormGroup>
                            <FormGroup>
                                 <Label for="email">Enter Email</Label>
                                         <Input id="email" placeholder="Enter email"
                                             type="email"
                                             value={data.email}
-                                         onChange={(e)=>handleChange(e,'email')}/>
+                                            onChange={(e) => handleChange(e, 'email')}
+                                            invalid={valError?.errors?.response?.data?.email ? true : false} />
+                                         <FormFeedback>
+                                            {valError?.errors?.response?.data?.email}
+                                        </FormFeedback>
                            </FormGroup>
                            <FormGroup>
                                 <Label for="password">Enter Password</Label>
                                         <Input id="password" placeholder="Enter password"
                                             type="password"
                                             value={data.password}
-                                         onChange={(e)=>handleChange(e,'password')}/>
+                                            onChange={(e) => handleChange(e, 'password')}
+                                            invalid={valError?.errors?.response?.data?.password ? true : false} />
+                                        <FormFeedback>
+                                            {valError?.errors?.response?.data?.password}
+                                        </FormFeedback>
                            </FormGroup>
                            <FormGroup>
                                 <Label for="about">Enter about yorself</Label>
@@ -97,7 +111,12 @@ export const Signup = () => {
                                             placeholder="Enter about yourselves"
                                             type="textarea" style={{ height: "250px" }}
                                             value={data.about}
-                                         onChange={(e)=>handleChange(e,'about')}/>
+                                            onChange={(e) => handleChange(e, 'about')}
+                                            invalid={valError?.errors?.response?.data?.about ? true : false}
+                                        />
+                                         <FormFeedback>
+                                            {valError?.errors?.response?.data?.about}
+                                        </FormFeedback>
                            </FormGroup>
                           <Container className='text-center'>
                                 <Button color="light" outline>Submit</Button>

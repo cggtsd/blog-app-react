@@ -3,9 +3,12 @@ import { Base } from "./Base"
 import { Container, Row, Col, Form, FormGroup, Label,Input,Card,CardBody,CardHeader,Button} from 'reactstrap'
 import { logIn } from "../../services/user-service"
 import { toast } from "react-toastify"
+import { doLogin } from "../../auth"
+import { useNavigate } from "react-router"
 export const Login = () => {
+   const navigate= useNavigate()
   const [loginDetail,setLoginDetail] = useState({
-        username: '',
+        username:'',
         password:''
   })
     const changeHandler = (e,field)=>{
@@ -21,15 +24,21 @@ export const Login = () => {
         }
         logIn(loginDetail).then(data => {
             console.log(data)
+            //store jwt token in local/sessionstorage
+            doLogin(data, () => {
+                console.log("token stored in session storage")
+                navigate("/user/dashboard")
+            })
+
             toast.success('Login Successfull !!')
             
         }).catch(error => {
             console.log(error)
             if (error?.status === 404) {
-                toast.error(error?.response?.data.message)
+                toast.error(error?.response?.data?.message)
             }
             else
-            toast.error("Something went wrong !!")
+            toast.error("Something went wrong on server!!")
         })
     }
     const resetHandler = () => {

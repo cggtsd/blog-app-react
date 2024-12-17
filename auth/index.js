@@ -25,6 +25,15 @@ export const getCurrentUserDetails = () => {
         return undefined
 }
 
+//get token
+export const getToken = () => {
+    if (isLoggedIn()) {
+        return JSON.parse(sessionStorage.getItem("data")).token
+    }
+    else
+        return null
+}
+
 
 
 

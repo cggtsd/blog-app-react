@@ -4,11 +4,11 @@ import { myAxios } from "./helper";
 
 export const signUp = (user) => {
     // console.log(myAxios)
-  return  myAxios.post('/api/v1/auth/register', user)
+  return  myAxios.post('/auth/register', user)
     .then(response=>response.data)
 }
 
 export const logIn = (data) => {
-  return myAxios.post('/api/v1/auth/login', data)
+  return myAxios.post('/auth/login', data)
     .then(response => response.data)
 }

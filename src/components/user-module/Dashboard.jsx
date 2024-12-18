@@ -2,6 +2,7 @@ import React from 'react'
 import { Base } from '../Base'
 import { AddPost } from '../AddPost'
 import { Container } from 'reactstrap'
+import NewFeed from '../NewFeed'
 
 export const Dashboard = () => {
   return (
@@ -9,7 +10,6 @@ export const Dashboard = () => {
       <Container>
          <AddPost/>
       </Container>
-         
-     </Base>
+    </Base>
   )
 }

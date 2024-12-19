@@ -26,7 +26,7 @@ const NewFeed = () => {
         if (pageNumber > postContent.pageNumber && postContent.lastPage) {
             return
         }
-        if (pageNumber < postContent.pageNumber && postContent.lastPage===0) {
+        if (pageNumber < postContent.pageNumber && postContent.pageNumber===0) {
             return
         }
         loadAllPosts(pageNumber, pageSize).then(data => {

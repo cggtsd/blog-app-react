@@ -10,6 +10,7 @@ import { PrivateRoute } from './components/PrivateRoute';
 import { ProfileInfo } from './components/user-module/ProfileInfo';
 import { Services } from './components/Services';
 import './App.css'
+import PostPage from './components/PostPage';
 function App() {
   return (
     <BrowserRouter>
@@ -20,6 +21,7 @@ function App() {
         <Route path="/signup" element={<Signup/> } />
         <Route path="/about" element={<About/> } />
         <Route path="/services" element={<Services/> } />
+        <Route path="/posts/:postId" element={<PostPage/> } />
         
         <Route path="/user" element={<PrivateRoute />} >
           <Route path="dashboard" element={<Dashboard/> } />

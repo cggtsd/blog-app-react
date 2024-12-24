@@ -1,6 +1,7 @@
 import { Login } from './components/Login'
 import { Signup } from './components/Signup'
 import 'react-toastify/dist/ReactToastify.css'
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Route ,Routes} from 'react-router';
 import { Home } from './components/Home';

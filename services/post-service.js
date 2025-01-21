@@ -17,3 +17,8 @@ export const loadPost = (postId) => {
 export const createComment = (comment,postId) => {
     return privateAxios.post(`/post/${postId}/comments`,comment).then(response=>response.data)
 }
+
+export const loadPostUserWise = (userId) => {
+   
+    return privateAxios.get(`/user/${userId}/posts`).then(response=>response.data)
+}

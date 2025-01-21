@@ -12,6 +12,8 @@ import { ProfileInfo } from './components/user-module/ProfileInfo';
 import { Services } from './components/Services';
 import './App.css'
 import PostPage from './components/PostPage';
+import Categories from './components/Categories';
+import PageNotFound from './components/PageNotFound';
 function App() {
   return (
     <BrowserRouter>
@@ -23,8 +25,10 @@ function App() {
         <Route path="/about" element={<About/> } />
         <Route path="/services" element={<Services/> } />
         <Route path="/posts/:postId" element={<PostPage/> } />
-        
+        <Route path="/categories/:categoryId" element={<Categories/> } />
+        <Route path="*" element={<PageNotFound/>}/>
         <Route path="/user" element={<PrivateRoute />} >
+          <Route index element={<Dashboard/> }/>
           <Route path="dashboard" element={<Dashboard/> } />
           <Route path="profile-info" element={<ProfileInfo/> } />
         </Route>

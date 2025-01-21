@@ -1,15 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Link } from 'react-router'
 import { Button, Card, CardBody, CardText } from 'reactstrap'
-import { getCurrentUserDetails, isLoggedIn } from '../../auth'
-
-const Post = ({ post = { id: -1, title: 'This is default title', content: "This is default content" } }) => {
-    const [user, setUser] = useState(null)
-    const [login, setLogin] = useState(null)
-    useEffect(() => {
-        setUser(getCurrentUserDetails()) 
-        setLogin(isLoggedIn())
-    },[])
+const Post = ({post={title:'This is default title',content:"This is default content"}}) => {
   return (
       <Card className='border-0 shadow-sm mt-3'>
           <CardBody>
@@ -19,9 +11,6 @@ const Post = ({ post = { id: -1, title: 'This is default title', content: "This 
               </CardText>
               <div>
                   <Link to={`/posts/${post.postId}`} className='btn btn-secondary'>Read More</Link>
-                  {
-                      login&&(user&&user.id===post.user.id?<Button color='danger' className='ms-2'>Delete</Button>:'')
-                   }
               </div>
           </CardBody> 
       </Card>

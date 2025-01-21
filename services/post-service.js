@@ -18,7 +18,17 @@ export const createComment = (comment,postId) => {
     return privateAxios.post(`/post/${postId}/comments`,comment).then(response=>response.data)
 }
 
-export const loadPostUserWise = (userId) => {
-   
-    return privateAxios.get(`/user/${userId}/posts`).then(response=>response.data)
+export const uploadPostImage = (image, postId) => {
+   let formData = new FormData()
+    formData.append("image",image)
+    return privateAxios.post(`/post/image/upload/${postId}`, formData, {
+        Headers: {
+            'Content-Type':'multipart/form-data'
+        }
+        
+    }).then(response=>response.data)
+}
+
+export const loadPostByCategory = (categoryId) => {
+    return privateAxios.get(`/category/${categoryId}/posts`).then(response=>response.data)
 }

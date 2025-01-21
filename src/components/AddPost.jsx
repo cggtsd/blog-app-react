@@ -7,7 +7,7 @@ import { data } from 'react-router';
 import { getCurrentUserDetails } from '../../auth';
 import { createPost as doCreatePost } from '../../services/post-service';
 import { toast } from 'react-toastify';
-
+import {uploadPostImage} from '../../services/post-service'
 export const AddPost = () => {
     const [categories, setCategories] = useState([])
     const editor = useRef(null)
@@ -16,7 +16,8 @@ export const AddPost = () => {
         content: '',
         categoryId:0
     })
-   const[user,setUser]= useState(undefined)
+    const [user, setUser] = useState(undefined)
+    const [image,setImage]=useState(null)
    useEffect(() => {
         setUser(getCurrentUserDetails())
         getCategories().then(data => {
@@ -55,6 +56,12 @@ export const AddPost = () => {
         post['userId']=user.id
         doCreatePost(post).then(data => {
             console.log(data)
+            uploadPostImage(image, data.postId).then(data => {
+                toast.success("Image uploaded successfully !!")
+            }).catch(error => {
+                console.log(error)
+                toast.error("Image uploading failed !!")
+            })
             toast.success("Post added successfully !!")
             setPost({
                title: '',
@@ -66,6 +73,11 @@ export const AddPost = () => {
             toast.error("Post cannot be added due to some error on server !!")
         })
 
+    }
+
+    const handleFileChange = (e) => {
+        console.log(e.target.files[0])
+        setImage(e.target.files[0])
     }
   return (
     
@@ -91,6 +103,11 @@ export const AddPost = () => {
                               onChange={(data)=>contentFieldChange(data)}
 			              />
                       </FormGroup>
+                      <FormGroup>
+                      <Label for="image">Upload Post Banner</Label>
+                          <Input id="image" type="file" onChange={handleFileChange } />
+    
+                     </FormGroup>
                       <FormGroup>
                           <Label for='categoryId'>Post Category</Label>
                           <Input type='select' id='categoryId' name="categoryId" value={post.categoryId}

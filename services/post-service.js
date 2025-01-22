@@ -30,7 +30,7 @@ export const uploadPostImage = (image, postId) => {
 }
 
 export const loadPostByCategory = (categoryId) => {
-    return privateAxios.get(`/category/${categoryId}/posts`).then(response=>response.data)
+    return myAxios.get(`/category/${categoryId}/posts`).then(response=>response.data)
 }
 
 export const loadPostUserWise = (userId) => {

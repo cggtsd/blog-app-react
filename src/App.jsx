@@ -14,8 +14,10 @@ import './App.css'
 import PostPage from './components/PostPage';
 import Categories from './components/Categories';
 import PageNotFound from './components/PageNotFound';
+import UserProvider from './context/UserProvider';
 function App() {
   return (
+    <UserProvider>
     <BrowserRouter>
       <ToastContainer position="bottom-center"/>
       <Routes>
@@ -33,7 +35,8 @@ function App() {
           <Route path="profile-info" element={<ProfileInfo/> } />
         </Route>
       </Routes>
-   </BrowserRouter>
+      </BrowserRouter>
+      </UserProvider>
   )
 }
 

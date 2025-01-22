@@ -1,11 +1,13 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
 import { Base } from "./Base"
 import { Container, Row, Col, Form, FormGroup, Label,Input,Card,CardBody,CardHeader,Button} from 'reactstrap'
 import { logIn } from "../../services/user-service"
 import { toast } from "react-toastify"
 import { doLogin } from "../../auth"
 import { useNavigate } from "react-router"
+import { userContext } from "../context/userContext"
 export const Login = () => {
+  const userContextData=  useContext(userContext)
    const navigate= useNavigate()
   const [loginDetail,setLoginDetail] = useState({
         username:'',
@@ -27,6 +29,10 @@ export const Login = () => {
             //store jwt token in local/sessionstorage
             doLogin(data, () => {
                 console.log("token stored in session storage")
+                userContextData.setUser({
+                    data: data.user,
+                    login:true
+                })
                 navigate("/user/dashboard")
             })
 

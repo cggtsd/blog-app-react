@@ -24,6 +24,9 @@ const Post = ({ post = { id: -1, title: 'This is default title', content: "This 
                   {
                       userContextData.user.login&&(user&&user.id===post.user.id?<Button color='danger' className='ms-2' onClick={()=>deletePost(post)}>Delete</Button>:'')
                    }
+                  {
+                      userContextData.user.login && (user && user.id === post.user.id ? <Button color='warning' tag={Link} to={ `/user/update-blog/${post.postId}`} className='ms-2' >Update</Button>:'')
+                   }
               </div>
           </CardBody> 
       </Card>

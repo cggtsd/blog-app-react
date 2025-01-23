@@ -41,3 +41,7 @@ export const loadPostUserWise = (userId) => {
 export const deletePostData = (postId) => {
     return privateAxios.delete(`/posts/${postId}`).then(response=>response.data)
 }
+
+export const doUpdatePost = (post, postId) => {
+    return privateAxios.put(`/posts/${postId}`,post).then(response=>response.data)
+}

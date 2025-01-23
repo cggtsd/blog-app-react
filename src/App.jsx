@@ -15,6 +15,7 @@ import PostPage from './components/PostPage';
 import Categories from './components/Categories';
 import PageNotFound from './components/PageNotFound';
 import UserProvider from './context/UserProvider';
+import UpdateBlog from './components/UpdateBlog';
 function App() {
   return (
     <UserProvider>
@@ -33,6 +34,7 @@ function App() {
           <Route index element={<Dashboard/> }/>
           <Route path="dashboard" element={<Dashboard/> } />
           <Route path="profile-info" element={<ProfileInfo/> } />
+          <Route path="update-blog/:blogId" element={<UpdateBlog/> } />
         </Route>
       </Routes>
       </BrowserRouter>

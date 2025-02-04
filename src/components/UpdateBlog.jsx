@@ -18,14 +18,16 @@ function UpdateBlog() {
     const editor= useRef(null)
     useEffect(() => {
         getCategories().then(data => {
+            
             setCategories(data)
+            console.log(categories.length)
         }).catch(error => {
             console.log(error)
         })
         // load post from the database
         loadPost(blogId).then(data => {
             console.log(data)
-            setPost({ ...data, categoryId: data.category.category })
+            setPost({ ...data, categoryId: data.category.categoryId })
             }).catch(error => {
             console.log(error)
             toast.error('error in loading the blog !1')
@@ -34,7 +36,7 @@ function UpdateBlog() {
 
     useEffect(() => {
  console.log({...post})
-        if (!post) {
+        if (post!=null) {
             
             if (post.user.id != object.user.data.id) {
                 toast.error('This is not your post !!')
